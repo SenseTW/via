@@ -18,6 +18,10 @@ collections:
             rewrite_rel_canon: false
             client:
                 no_rewrite_prefixes:
+                    - "http://sense.tw/"
+                    - "https://sense.tw/"
+                    - "http://kuansim.org/"
+                    - "https://kuansim.org/"
                     - 'http://localhost:5000/' # Hypothesis dev server
                     - 'http://localhost:3001/' # Hypothesis client dev server
                     - 'https://hypothes.is/'
