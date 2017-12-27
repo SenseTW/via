@@ -10,7 +10,7 @@ data:
     off;\n      proxy_set_header Host $host;\n      proxy_set_header X-Forwarded-Server
     $http_host;\n      proxy_set_header X-Forwarded-For $proxy_add_x_forwarded_for;\n
     \     proxy_set_header X-Request-Start \"t=${msec}\";\n      proxy_set_header
-    Accept-Encoding \"\";\n    }\n  }\n\n\n"
+    Accept-Encoding \"gzip, deflate\";\n    }\n  }\n\n\n"
 kind: ConfigMap
 metadata:
   creationTimestamp: null
