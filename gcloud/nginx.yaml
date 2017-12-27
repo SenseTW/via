@@ -1,40 +1,15 @@
 apiVersion: v1
 data:
-  nginx.conf: |2+
-      upstream web { server unix:/tmp/viaapp.sock fail_timeout=0; }
-
-      server {
-        listen 19080;
-
-        server_name _;
-        server_tokens off;
-
-        root /var/www;
-
-        location /health {
-            access_log off;
-            return 200;
-        }
-
-        location / {
-          if ($http_x_forwarded_proto != "https") {
-              rewrite ^(.*)$ https://$host$1 permanent;
-          }
-
-          proxy_pass http://web;
-          proxy_http_version 1.1;
-          proxy_connect_timeout 10s;
-          proxy_send_timeout 10s;
-          proxy_read_timeout 10s;
-          proxy_redirect off;
-          proxy_set_header Host $host;
-          proxy_set_header X-Forwarded-Server $http_host;
-          proxy_set_header X-Forwarded-For $proxy_add_x_forwarded_for;
-          proxy_set_header X-Request-Start "t=${msec}";
-        }
-      }
-
-
+  nginx.conf: "  upstream web { \n    server 127.0.0.1:9080 fail_timeout=0;\n  }\n\n
+    \ server {\n    listen 19080;\n\n    server_name _;\n    server_tokens off;\n\n
+    \   root /var/www;\n\n    location /health {\n        access_log off;\n        return
+    200;\n    }\n\n    location / {\n      if ($http_x_forwarded_proto != \"https\")
+    {\n          rewrite ^(.*)$ https://$host$1 permanent;\n      }\n\n      proxy_pass
+    http://web;\n      proxy_http_version 1.1;\n      proxy_connect_timeout 10s;\n
+    \     proxy_send_timeout 10s;\n      proxy_read_timeout 10s;\n      proxy_redirect
+    off;\n      proxy_set_header Host $host;\n      proxy_set_header X-Forwarded-Server
+    $http_host;\n      proxy_set_header X-Forwarded-For $proxy_add_x_forwarded_for;\n
+    \     proxy_set_header X-Request-Start \"t=${msec}\";\n    }\n  }\n\n\n"
 kind: ConfigMap
 metadata:
   creationTimestamp: null
