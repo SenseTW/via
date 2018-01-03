@@ -12,7 +12,6 @@ from werkzeug import wsgi
 from via.blocker import Blocker
 from via.security import RequestHeaderSanitiser, ResponseHeaderSanitiser
 from via.useragent import UserAgentDecorator
-from via.gdrv import GDriverRequestSanitiser
 
 logging.disable(logging.INFO)
 
@@ -66,8 +65,7 @@ def app(environ, start_response):
     return pywb.apps.wayback.application(environ, start_response)
 
 
-application = GDriverRequestSanitiser(app)
-application = RequestHeaderSanitiser(application)
+application = RequestHeaderSanitiser(app)
 application = ResponseHeaderSanitiser(application)
 application = Blocker(application)
 application = UserAgentDecorator(application, 'Hypothesis-Via')
