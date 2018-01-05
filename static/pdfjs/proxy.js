@@ -8,5 +8,8 @@ PDFJS.getDocument = function getDocumentWithProxy(src) {
 }
 /* Address https://github.com/hypothesis/via/issues/18 */
 window.hypothesisConfig = function() {
-    return {showHighlights: true};
+    return {
+      showHighlights: true,
+      openSidebar: true
+    };
 }
