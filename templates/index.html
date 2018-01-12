@@ -23,47 +23,61 @@
   integrity="sha256-DZAnKJ/6XZ9si04Hgrsxu/8s717jcIzLy3oi35EouyE="
   crossorigin="anonymous"></script>
   <script type="text/javascript">
-    function _upload(file) {
+    function sendFile(sigurl, file) {
+      console.log(sigurl, file, file.type);
+
+      var data = new FormData();
+      data.append(file.name, file, file.name)
+   
+      $.ajax({
+        type: 'PUT',
+        url: sigurl,
+        data: file,
+        success: function () {
+          $.ajax({
+            type: 'POST',
+            url: 'https://us-central1-ggv-notetool.cloudfunctions.net/stroCompletedUpload',
+            data: JSON.stringify({signedURL: sigurl}),
+            success: function(url) {
+              console.log(url);
+              window.location.href = 'https://via.sense.tw/' + url;
+            }
+          });
+        },
+        xhrFields: {
+          // add listener to XMLHTTPRequest object directly for progress (jquery doesn't have this yet)
+          onprogress: function (progress) {
+            // calculate upload progress
+            var percentage = Math.floor((progress.total / progress.totalSize) * 100);
+            // log upload progress to console
+            console.log('progress', percentage);
+            if (percentage === 100) {
+              console.log('DONE!');
+            }
+          }
+        },
+        processData: false,
+        contentType: false
+      });
+    }
+
+    function signedurl(file, done) {
       $.ajax({
         crossDomain: true,
         type: 'POST',
         url: 'https://us-central1-ggv-notetool.cloudfunctions.net/storGetSignedUrl/',
-        data: {filename: file.name},
-        success: function(signurl) {
-          $.ajax({
-            crossDomain: true,
-            type: 'POST',
-            url: signurl,
-            data: file,
-            contentType: file.type,
-            success: function() {
-              $.ajax({
-                type: 'POST',
-                url: 'https://us-central1-ggv-notetool.cloudfunctions.net/stroCompletedUpload/',
-                contentType: "application/json",
-                data: {
-                  signedURL: signurl
-                },
-                success: function(fileurl) {
-                  window.location.href = 'https://via.sense.tw/'+ fileurl;
-                }
-              });
-            }
-          });
-        },
-        contentType: "application/json",
-        dataType: 'json'
+        data: JSON.stringify({filename: file.name}),
+        success: function(url) { 
+          return done(url, file);
+        }
       })
     }
-    function uploadFile() {
-      var files = $('#file-uploader')[0].files;
-      if (files) {
-        _upload(files[0]);
-      }
-      else {
-        alert('no file');
-      }
+
+    function uploadFiles() {
+      var file = $('#fileInput')[0].files[0]
+      signedurl(file, sendFile);
     }
+
   </script>
 </head>
 <body>
@@ -78,8 +92,8 @@
   <p>
     或是
   </p>
-  <input id='file-uploader' name='file' class="block sm-col-4 field-light" type='file'></input>
-  <button onclick='javascript:uploadFile()' type="submit" class="button-blue">上傳 PDF 並註記!</button>
+  <input id='fileInput' name='file' class="block sm-col-4 field-light" type='file'></input>
+  <button type="submit" onclick='javascript:uploadFiles()' class="button-blue">上傳 PDF 並註記!</button>
   </center>
 </body>
 </html>
