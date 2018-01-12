@@ -25,18 +25,21 @@
   <script type="text/javascript">
     function _upload(file) {
       $.ajax({
+        crossDomain: true,
         type: 'POST',
-        url: 'https://us-central1-ggv-notetool.cloudfunctions.net/storGetSignedUrl',
+        url: 'https://us-central1-ggv-notetool.cloudfunctions.net/storGetSignedUrl/',
         data: {filename: file.name},
         success: function(signurl) {
           $.ajax({
+            crossDomain: true,
             type: 'POST',
             url: signurl,
             data: file,
             contentType: file.type,
             success: function() {
               $.ajax({
-                url: 'https://us-central1-ggv-notetool.cloudfunctions.net/stroCompletedUpload',
+                type: 'POST',
+                url: 'https://us-central1-ggv-notetool.cloudfunctions.net/stroCompletedUpload/',
                 contentType: "application/json",
                 data: {
                   signedURL: signurl
