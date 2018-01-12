@@ -65,11 +65,12 @@
       $.ajax({
         crossDomain: true,
         type: 'POST',
-        url: 'https://us-central1-ggv-notetool.cloudfunctions.net/storGetSignedUrl/',
+        url: 'https://us-central1-ggv-notetool.cloudfunctions.net/storGetSignedUrl',
         data: JSON.stringify({filename: file.name}),
         success: function(url) { 
           return done(url, file);
-        }
+        },
+        contentType: 'application/json'
       })
     }
 
