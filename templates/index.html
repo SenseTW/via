@@ -18,6 +18,50 @@
     body { margin-top: 5%; font-family: "myriad-pro", sans-serif; }
     h1 { color: #939393; }
   </style>
+  <script
+  src="https://code.jquery.com/jquery-3.2.1.js"
+  integrity="sha256-DZAnKJ/6XZ9si04Hgrsxu/8s717jcIzLy3oi35EouyE="
+  crossorigin="anonymous"></script>
+  <script type="text/javascript">
+    function _upload(file) {
+      $.ajax({
+        type: 'POST',
+        url: 'https://us-central1-ggv-notetool.cloudfunctions.net/storGetSignedUrl',
+        data: {filename: file.name},
+        success: function(signurl) {
+          $.ajax({
+            type: 'POST',
+            url: signurl,
+            data: file,
+            contentType: file.type,
+            success: function() {
+              $.ajax({
+                url: 'https://us-central1-ggv-notetool.cloudfunctions.net/stroCompletedUpload',
+                contentType: "application/json",
+                data: {
+                  signedURL: signurl
+                },
+                success: function(fileurl) {
+                  window.location.href = 'https://via.sense.tw/'+ fileurl;
+                }
+              });
+            }
+          });
+        },
+        contentType: "application/json",
+        dataType: 'json'
+      })
+    }
+    function uploadFile() {
+      var files = $('#file-uploader')[0].files;
+      if (files) {
+        _upload(files[0]);
+      }
+      else {
+        alert('no file');
+      }
+    }
+  </script>
 </head>
 <body>
   <center>
@@ -26,6 +70,13 @@
     <input id="search" class="block sm-col-4 field-light" name="search" type="text" maxsize="30" placeholder="貼上連結並建立註記"/>
     <button type="submit" class="button-blue">行動!</button>
   </form>
+  <p>
+  </p>
+  <p>
+    或是
+  </p>
+  <input id='file-uploader' name='file' class="block sm-col-4 field-light" type='file'></input>
+  <button onclick='javascript:uploadFile()' type="submit" class="button-blue">上傳 PDF 並註記!</button>
   </center>
 </body>
 </html>
