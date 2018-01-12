@@ -41,7 +41,8 @@
             success: function(url) {
               console.log(url);
               window.location.href = 'https://via.sense.tw/' + url;
-            }
+            },
+            contentType: 'application/json; charset=UTF-8'
           });
         },
         xhrFields: {
@@ -56,8 +57,9 @@
             }
           }
         },
+        cahce: false,
         processData: false,
-        contentType: false
+        contentType: file.type
       });
     }
 
