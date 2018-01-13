@@ -68,7 +68,7 @@
         crossDomain: true,
         type: 'POST',
         url: 'https://us-central1-ggv-notetool.cloudfunctions.net/storGetSignedUrl',
-        data: JSON.stringify({filename: file.name}),
+        data: JSON.stringify({filename: file.name, contentType: file.type}),
         success: function(url) { 
           return done(url, file);
         },
