@@ -65,10 +65,29 @@ def app(environ, start_response):
     return pywb.apps.wayback.application(environ, start_response)
 
 
+class FacebookRedirector(object):
+
+    def __init__(self, application):
+        self.application = application
+
+    def __call__(self, environ, start_response):
+        host_to_replace = "www.facebook.com"
+        host_replacing = "m.facebook.com"
+        start = environ["PATH_INFO"].find(host_to_replace)
+        if start == 8 or start == 9:
+            path = environ["PATH_INFO"]
+            path = path[:start] + host_replacing + \
+                path[start + len(host_to_replace):]
+            start_response('302 Found', [('Location', path)])
+            return ['1']
+        return self.application(environ, start_response)
+
+
 application = RequestHeaderSanitiser(app)
 application = ResponseHeaderSanitiser(application)
 application = Blocker(application)
 application = UserAgentDecorator(application, 'Hypothesis-Via')
+application = FacebookRedirector(application)
 application = wsgi.DispatcherMiddleware(application, {
     '/favicon.ico': static.Cling('static/favicon.ico'),
     '/robots.txt': static.Cling('static/robots.txt'),
