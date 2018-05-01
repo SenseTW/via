@@ -7,8 +7,8 @@ metadata:
 spec:
   type: NodePort
   ports:
-  - port: 9080
-    targetPort: 9080
+  - port: 19080
+    targetPort: 19080
     nodePort: 30100
     protocol: TCP
     name: viaserver-http
