@@ -15,8 +15,8 @@ steps:
   args:
   - 'set'
   - 'image'
-  - 'deployment/viaserver'
-  - 'viaserver=asia.gcr.io/$PROJECT_ID/viaserver:$COMMIT_SHA'
+  - 'deployment/viaserver-stage'
+  - 'viaserver-stage=asia.gcr.io/$PROJECT_ID/viaserver:$COMMIT_SHA'
   env:
   - 'CLOUDSDK_COMPUTE_ZONE=asia-east1-c'
   - 'CLOUDSDK_CONTAINER_CLUSTER=hypo'

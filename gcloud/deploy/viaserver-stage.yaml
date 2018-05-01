@@ -1,0 +1,54 @@
+apiVersion: extensions/v1beta1
+kind: Deployment
+metadata:
+  name: viaserver-stage
+spec:
+  replicas: 1
+  template:
+    metadata:
+      labels:
+        service: viaserver-stage
+    spec:
+      containers:
+        - image: nginx
+          name: viaserver-web
+          resources:
+            requests:
+              memory: "64Mi"
+              cpu: "10m"
+          lifecycle:
+            preStop:
+              exec:
+                command: ["/usr/sbin/nginx","-s","quit"]
+          volumeMounts:
+            - name: "nginx-via-proxy-conf"
+              mountPath: "/etc/nginx/conf.d"
+            - name: viaserver-socket
+              mountPath: /tmp
+          ports:
+            - containerPort: 19080
+              name: viaserver-tcp
+        - image: asia.gcr.io/ggv-notetool/viaserver
+          imagePullPolicy: Always
+          name: viaserver-stage
+          env:
+            - name: H_EMBED_URL
+              value: https://stage.sense.tw/client/boot.js
+            - name: CORS_ALLOW_ORIGINS
+              value: https://sense.tw http://sense.tw https://stage.sense.tw http://stage.sense.tw
+          resources:
+            requests:
+              memory: "64Mi"
+              cpu: "10m"
+          volumeMounts:
+            - name: viaserver-socket
+              mountPath: /tmp
+      volumes:
+        - name: viaserver-socket
+          emptyDir:
+        - name: "nginx-via-proxy-conf"
+          configMap:
+            name: "nginx-via-proxy-conf"
+            items:
+              - key: "nginx.conf"
+                path: "nginx.conf"
