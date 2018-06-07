@@ -20,6 +20,8 @@ collections:
                 no_rewrite_prefixes:
                     - "http://sense.tw/"
                     - "https://sense.tw/"
+                    - "http://h.sense.tw/"
+                    - "https://h.sense.tw/"
                     - "http://stage.sense.tw/"
                     - "https://stage.sense.tw/"
                     - 'http://localhost:5000/' # Hypothesis dev server
