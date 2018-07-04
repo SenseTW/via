@@ -22,6 +22,8 @@ collections:
                     - "https://sense.tw/"
                     - "http://h.sense.tw/"
                     - "https://h.sense.tw/"
+                    - "http://api.sense.tw/"
+                    - "https://api.sense.tw/"
                     - "http://stage.sense.tw/"
                     - "https://stage.sense.tw/"
                     - 'http://localhost:5000/' # Hypothesis dev server
