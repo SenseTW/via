@@ -2,6 +2,7 @@ from pkg_resources import resource_filename
 
 import logging
 import os
+
 import pywb.apps.wayback
 import static
 from werkzeug.exceptions import NotFound
@@ -10,6 +11,7 @@ from werkzeug.wrappers import Request
 from werkzeug import wsgi
 
 from via.blocker import Blocker
+from via.config_extractor import ConfigExtractor
 from via.security import RequestHeaderSanitiser, ResponseHeaderSanitiser
 from via.useragent import UserAgentDecorator
 
@@ -88,6 +90,7 @@ application = ResponseHeaderSanitiser(application)
 application = Blocker(application)
 application = UserAgentDecorator(application, 'Hypothesis-Via')
 application = FacebookRedirector(application)
+application = ConfigExtractor(application)
 application = wsgi.DispatcherMiddleware(application, {
     '/favicon.ico': static.Cling('static/favicon.ico'),
     '/robots.txt': static.Cling('static/robots.txt'),

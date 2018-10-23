@@ -1,0 +1,12 @@
+window.hypothesisConfig = function() {
+  return {
+    showHighlights: true,
+    appType: 'via',
+
+    {% if h_request_config %}
+    requestConfigFromFrame: '{{ h_request_config }}',
+    {% endif %}
+
+    openSidebar: true,
+  };
+}

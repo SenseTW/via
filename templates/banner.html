@@ -16,12 +16,7 @@ if (window.location.pathname.indexOf('/if_/') === 0) {
 var embed_script = document.createElement("script");
 embed_script.src = "{{ h_embed_url }}";
 document.head.appendChild(embed_script);
-window.hypothesisConfig = function() {
-    return {
-      showHighlights: true,
-      openSidebar: true,
-      appType: 'via'
-    };
-}
+
+{% include "client_config.js.jinja2" %}
 })();
 </script>
