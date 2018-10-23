@@ -21,7 +21,7 @@ spec:
               exec:
                 command: ["/usr/sbin/nginx","-s","quit"]
           volumeMounts:
-            - name: "nginx-via-proxy-conf"
+            - name: "nginx-via-stage-proxy-conf"
               mountPath: "/etc/nginx/conf.d"
             - name: viaserver-socket
               mountPath: /tmp
@@ -35,7 +35,7 @@ spec:
             - name: H_EMBED_URL
               value: https://h.sense.tw/client/boot.js
             - name: CORS_ALLOW_ORIGINS
-              value: https://h.sense.tw http://h.sense.tw https://sense.tw http://sense.tw https://stage.sense.tw http://stage.sense.tw
+              value: https://h.sense.tw http://h.sense.tw https://sense.tw http://sense.tw https://staging.sense.tw http://staging.sense.tw
           resources:
             requests:
               memory: "64Mi"
@@ -46,9 +46,9 @@ spec:
       volumes:
         - name: viaserver-socket
           emptyDir:
-        - name: "nginx-via-proxy-conf"
+        - name: "nginx-via-stage-proxy-conf"
           configMap:
-            name: "nginx-via-proxy-conf"
+            name: "nginx-via-stage-proxy-conf"
             items:
               - key: "nginx.conf"
                 path: "nginx.conf"
