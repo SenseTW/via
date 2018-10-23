@@ -24,10 +24,19 @@ collections:
                     - "https://h.sense.tw/"
                     - "http://api.sense.tw/"
                     - "https://api.sense.tw/"
-                    - "http://stage.sense.tw/"
-                    - "https://stage.sense.tw/"
+                    - "http://staging.sense.tw/"
+                    - "https://staging.sense.tw/"
                     - 'http://localhost:5000/' # Hypothesis dev server
                     - 'http://localhost:3001/' # Hypothesis client dev server
+                    - "https://googleads.g.doubleclick.net"
+                    - "https://securepubads.g.doubleclick.net"
+                    - "https://amp-error-reporting.appspot.com"
+                    - "https://cdn.ampproject.org"
+                    - "https://cdnjs.cloudflare.com"
+                    - "https://fonts.gstatic.com"
+                    - "https://ade.googlesyndication.com"
+                    - "https://www.gstatic.com/"
+                    - "https://www.google-analytics.com"
                     - 'https://hypothes.is/'
                     - 'https://qa.hypothes.is/'
                     - 'https://cdn.hypothes.is/'
