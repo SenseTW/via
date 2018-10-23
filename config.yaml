@@ -28,21 +28,30 @@ collections:
                     - "https://staging.sense.tw/"
                     - 'http://localhost:5000/' # Hypothesis dev server
                     - 'http://localhost:3001/' # Hypothesis client dev server
-                    - "https://googleads.g.doubleclick.net"
-                    - "https://securepubads.g.doubleclick.net"
-                    - "https://amp-error-reporting.appspot.com"
-                    - "https://cdn.ampproject.org"
-                    - "https://cdnjs.cloudflare.com"
-                    - "https://fonts.gstatic.com"
-                    - "https://ade.googlesyndication.com"
-                    - "https://www.gstatic.com/"
-                    - "https://www.google-analytics.com"
-                    - "https://unpkg.com"
-                    - "https://www.facebook.com"
                     - 'https://hypothes.is/'
                     - 'https://qa.hypothes.is/'
                     - 'https://cdn.hypothes.is/'
                     - '/assets/'
+
+                no_rewrite_domain:
+                    - "doubleclick.net"
+                    - "amp-error-reporting.appspot.com"
+                    - "ampproject.org"
+                    - "cdnjs.cloudflare.com"
+                    - "gstatic.com"
+                    - "googlesyndication.com"
+                    - "gstatic.com"
+                    - "google-analytics.com"
+                    - "unpkg.com"
+                    - "facebook.com"
+                    - "bootstrapcdn.com"
+                    - "youtube.com"
+                    - "googletagmanager.com"
+                    - "googletagservices.com"
+                    - "google.com"
+                    - "alexametrics.com"
+                    - "scorecardresearch.com"
+                    - "fbcdn.net"
 
                 #skip_createElement: true
 
