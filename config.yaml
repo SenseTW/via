@@ -37,6 +37,8 @@ collections:
                     - "https://ade.googlesyndication.com"
                     - "https://www.gstatic.com/"
                     - "https://www.google-analytics.com"
+                    - "https://unpkg.com"
+                    - "https://www.facebook.com"
                     - 'https://hypothes.is/'
                     - 'https://qa.hypothes.is/'
                     - 'https://cdn.hypothes.is/'

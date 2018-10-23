@@ -40,6 +40,8 @@ spec:
             requests:
               memory: "64Mi"
               cpu: "10m"
+          ports:
+            - containerPort: 3128
           volumeMounts:
             - name: viaserver-socket
               mountPath: /tmp
