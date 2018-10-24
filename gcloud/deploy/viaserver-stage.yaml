@@ -33,9 +33,9 @@ spec:
           name: viaserver-stage
           env:
             - name: H_EMBED_URL
-              value: https://h.sense.tw/client/boot.js
+              value: https://staging.h.sense.tw/client/boot.js
             - name: CORS_ALLOW_ORIGINS
-              value: https://h.sense.tw http://h.sense.tw https://sense.tw http://sense.tw https://staging.sense.tw http://staging.sense.tw
+              value: https://h.sense.tw https://staging.h.sense.tw https://sense.tw https://staging.sense.tw
           resources:
             requests:
               memory: "64Mi"
