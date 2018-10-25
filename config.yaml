@@ -20,8 +20,6 @@ collections:
                 no_rewrite_prefixes:
                     - "http://sense.tw/"
                     - "https://sense.tw/"
-                    - "http://h.sense.tw/"
-                    - "https://h.sense.tw/"
                     - "http://api.sense.tw/"
                     - "https://api.sense.tw/"
                     - "http://staging.sense.tw/"
@@ -45,14 +43,20 @@ collections:
                     - "google-analytics.com"
                     - "unpkg.com"
                     - "facebook.com"
+                    - "facebook.net"
                     - "bootstrapcdn.com"
                     - "youtube.com"
                     - "googletagmanager.com"
                     - "googletagservices.com"
                     - "google.com"
+                    - "google.com.tw"
+                    - "googleapis.com"
                     - "alexametrics.com"
                     - "scorecardresearch.com"
                     - "fbcdn.net"
+                    - "scupio.com"
+                    - "popin.cc"
+                    - "popincdn.com"
 
                 #skip_createElement: true
 
