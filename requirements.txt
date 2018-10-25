@@ -11,4 +11,4 @@ static>=1.1.1,<1.2.0
 # - a fix to allow srcset attributes to be an empty string
 #
 # This should be replaced with the new pywb version once merged and released.
--e git://github.com/SenseTW/pywb.git@ae4909043e64c7c5589df4ad5fb01c3bc3f99996#egg=pywb
+-e git://github.com/SenseTW/pywb.git@a2a9a1c7c5ef58ac35cc8b0aa09ff5aa57ad1fc0#egg=pywb
