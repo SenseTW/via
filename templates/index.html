@@ -89,7 +89,7 @@ height="0" width="0" style="display:none;visibility:hidden"></iframe></noscript>
   <img width="497" height="142" src="static/logo.svg" />
   <form class="h3" onsubmit="url = document.getElementById('search').value; if (url != '') { document.location.href = '/' + url; } return false;">
     <input id="search" class="block sm-col-4 field-light" name="search" type="text" maxsize="30" placeholder="Paste a link to make some notes on it"/>
-    <button type="submit" class="button-blue">Go!</button>
+    <button id="sense-via__submit-url-btn" type="submit" class="button-blue">Go!</button>
   </form>
   <p>
   </p>
@@ -97,7 +97,7 @@ height="0" width="0" style="display:none;visibility:hidden"></iframe></noscript>
     or
   </p>
   <input id='fileInput' name='file' class="block sm-col-4 field-light" type='file'></input>
-  <button type="submit" onclick='javascript:uploadFiles()' class="button-blue">Upload PDF and comment!</button>
+  <button id="sense-via__upload-pdf-btn" type="submit" onclick='javascript:uploadFiles()' class="button-blue">Upload PDF and comment!</button>
   </center>
 </body>
 </html>
